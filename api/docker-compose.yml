@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  mysql:
+    container_name: db-mysql
+    image: mysql:latest
+    restart: unless-stopped
+    networks:
+      - my-network
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: billiard-root-pass
+      MYSQL_USER: billiard
+      MYSQL_PASSWORD: billiard-root-pass
+    volumes:
+      - db-mysql:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    networks:
+      - my-network
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+      - mysql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/app
+    networks:
+      - my-network
+
+volumes:
+  db-mysql:
+
+networks:
+  my-network:
+    driver: "bridge"

@@ -18,7 +18,7 @@ import (
 	"github.com/berkaycubuk/billiard_software_api/pkg/upload"
 	"github.com/berkaycubuk/billiard_software_api/routes"
 	"github.com/berkaycubuk/gofusion"
-	"github.com/getsentry/sentry-go"
+	//"github.com/getsentry/sentry-go"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -36,8 +36,10 @@ func main() {
 		log.Fatal("Error loading .env file:", err)
 	}
 
+
+	/*
 		if err := sentry.Init(sentry.ClientOptions{
-				Dsn: "***REMOVED***",
+				Dsn: "",
 				EnableTracing: true,
 				// Set TracesSampleRate to 1.0 to capture 100%
 				// of transactions for performance monitoring.
@@ -46,6 +48,7 @@ func main() {
 		}); err != nil {
 				fmt.Printf("Sentry initialization failed: %v", err)
 		}
+	*/
 
 
 	database.ConnectDatabase()

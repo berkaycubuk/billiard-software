@@ -4,9 +4,9 @@ Billiard Software is a billiard venue automation software that runs on the web.
 
 ## Technologies
 
-Frontend: Vue
-Backend: Go
-Database: MySQL
+- Frontend: Vue
+- Backend: Go
+- Database: MySQL
 
 ## Supported payment methods
 
